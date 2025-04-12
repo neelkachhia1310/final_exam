@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reservation Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h2>Make a Reservation</h2>
+
+    <!-- Success message -->
+    <div th:if="${message}" style="color: green; font-weight: bold;">
+        <p th:text="${message}"></p>
+    </div>
+
+    <form th:action="@{/submit-reservation}" th:object="${reservation}" method="post">
+    <label for="details">Customer Details:</label><br>
+    <input type="text" id="details" th:field="*{details}" ><br>
+    <span th:if="${#fields.hasErrors('details')}" th:errors="*{details}" style="color:red;"></span><br><br>
+
+    <label for="ticketNumber">Ticket Number:</label><br>
+    <input type="text" id="ticketNumber" th:field="*{ticketNumber}" ><br>
+    <span th:if="${#fields.hasErrors('ticketNumber')}" th:errors="*{ticketNumber}" style="color:red;"></span><br><br>
+
+    <label for="date">Reservation Date:</label><br>
+    <input type="date" id="date" th:field="*{date}" ><br>
+    <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}" style="color:red;"></span><br><br>
+
+    <button type="submit">Next</button>
+</form>
+
+</body>
+</html>
